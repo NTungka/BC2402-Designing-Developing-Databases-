@@ -18,8 +18,8 @@
 **Doo Hong Wen, Evan U2321097A** \
 **Divyansh Jain, U2240118C** \
 **Agarwal Dhrooooooov, U2223241C**
-</div>
 
+</div>
 
 ```sql
 SELECT DISTINCT category
