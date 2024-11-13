@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/a1167d91-00c5-49f5-9dce-430fa0d8045f" 
+<img src="NTU logo.png" 
         alt="Picture" 
         style="display: block; margin: 0 auto" />
 </div>
