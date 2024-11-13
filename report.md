@@ -1,4 +1,4 @@
-![NTU logo](https://github.com/user-attachments/assets/a1167d91-00c5-49f5-9dce-430fa0d8045f)
+<img style="display: block; margin-left: auto; margin-right: auto; width: 50%"> ![NTU logo](https://github.com/user-attachments/assets/a1167d91-00c5-49f5-9dce-430fa0d8045f) </img>
 
 ```sql
 SELECT DISTINCT category
