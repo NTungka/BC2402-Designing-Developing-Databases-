@@ -1,7 +1,11 @@
-<img style="display: block; margin-left: auto; margin-right: auto; width: 50%"> 
-<p style="text-align: center;">
-![NTU logo](https://github.com/user-attachments/assets/a1167d91-00c5-49f5-9dce-430fa0d8045f)
-</p>
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/a1167d91-00c5-49f5-9dce-430fa0d8045f" 
+        alt="Picture" 
+        style="display: block; margin: 0 auto" />
+</div>
+
+
 ```sql
 SELECT DISTINCT category
 FROM customer_support; #Checks unique categories to see if cleaning is needed SELECT * FROM customer_support WHERE category NOT REGEXP '^[A-Z]+$';
