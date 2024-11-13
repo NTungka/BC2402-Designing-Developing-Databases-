@@ -37,7 +37,3 @@ where category not in ("ACCOUNT", "CANCEL", "CONTACT", "DELIVERY", "FEEDBACK", "
 select flags, instruction, category, intent, CONCAT(flags, instruction, category, intent, response) as response
 from customer_support
 where category not in ("ACCOUNT", "CANCEL", "CONTACT", "DELIVERY", "FEEDBACK", "INVOICE", "ORDER", "PAYMENT", "REFUND", "SHIPPING", "SUBSCRIPTION");
--- INTO OUTFILE '/Users/divyanshjain/Desktop/Year 3/BC2402/Final Project/customer_support_unstructured.csv'
--- FIELDS TERMINATED BY ','
--- ENCLOSED BY '"'
--- LINES TERMINATED BY '\n';
