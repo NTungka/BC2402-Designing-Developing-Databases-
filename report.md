@@ -5,6 +5,21 @@
         style="display: block; margin: 0 auto" />
 </div>
 
+<div align="center">
+
+**BC2402 Design & Dev Databases** \
+**2024/25 Semester 1**
+
+**Group Project Report**
+<br />
+<br />
+**Team Members** \
+**Nathaniel Tungka U2240162C** \
+**Doo Hong Wen, Evan U2321097A** \
+**Divyansh Jain, U2240118C** \
+**Agarwal Dhrooooooov, U2223241C**
+</div>
+
 
 ```sql
 SELECT DISTINCT category
