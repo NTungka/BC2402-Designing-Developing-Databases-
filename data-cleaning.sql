@@ -16,8 +16,8 @@ CREATE TABLE customer_support_keywords (
 INSERT INTO customer_support_keywords (keyword, category)
 VALUES
 	("cancellation", "CANCEL"),
-    ("canceling", "CANCEL"),
-    ("Customer Support", "CONTACT");
+	("canceling", "CANCEL"),
+	("Customer Support", "CONTACT");
 
 UPDATE customer_support
 SET response = CONCAT(flags, instruction, category, intent, response)
