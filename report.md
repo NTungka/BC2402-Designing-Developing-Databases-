@@ -1,11 +1,11 @@
-<div align="center">
+<div>
 
 <img src="NTU logo.png" 
         alt="Picture" 
         style="display: block; margin: 0 auto" />
 </div>
 
-<div align="center">
+<div>
 
 **BC2402 Design & Dev Databases** \
 **2024/25 Semester 1**
@@ -21,7 +21,7 @@
 
 </div>
 
-<div class="page-break"></div>
+<div style="page-break-after: always"></div>
 
 # Database Implementations
 
