@@ -36,3 +36,14 @@ db.customerSupport.aggregate(
             }
         }
 ])
+
+// Q3
+db.flightDelay.aggregate(
+    [
+        {
+            $match: {Cancelled: 1, ArrDelay : {$gt : 0}, DepDelay : {$gt : 0}} 
+        },
+        {
+            $group: { _id: {airline: "$Airline"}}
+        }
+])
