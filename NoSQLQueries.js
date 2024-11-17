@@ -22,8 +22,7 @@ db.customerSupport.aggregate(
     [
         { 
             $match: { 
-                category: {  $in: ["ACCOUNT", "CANCEL", "CONTACT", "DELIVERY", "FEEDBACK", "INVOICE", "ORDER", "PAYMENT", "REFUND", "SHIPPING", "SUBSCRIPTION"] },
-                flags: {$regex: /[QW]/}
+                category: {  $in: ["ACCOUNT", "CANCEL", "CONTACT", "DELIVERY", "FEEDBACK", "INVOICE", "ORDER", "PAYMENT", "REFUND", "SHIPPING", "SUBSCRIPTION"] }
             }
         }
         {
