@@ -32,7 +32,7 @@ db.customerSupport.aggregate(
             Colloquial: { $sum: { $cond: [{ $regexMatch: { input: "$flags", regex: /Q/ } }, 1, 0] } },
             Offensive: { $sum: { $cond: [{ $regexMatch: { input: "$flags", regex: /W/ } }, 1, 0] } },
             Both: { $sum: { $cond: [{ $regexMatch: { input: "$flags", regex: /(?=.*Q)(?=.*W)/ } }, 1, 0] } },
-            Other: { $sum: { $cond: [{ $regexMatch: { input: "$flags", regex: /(?=.*Q)(?=.*W)/ } }, 0, 1] } },
+            Other: { $sum: { $cond: [{ $and: [ { $not: [{ $regexMatch: { input: "$flags", regex: /Q/ } }] }, { $not: [{ $regexMatch: { input: "$flags", regex: /W/ } }] } ] }, 1, 0] } }
             }
         }
 ])
