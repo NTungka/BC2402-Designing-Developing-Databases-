@@ -124,3 +124,35 @@ db.sia_stock.aggregate([
             MinLow: { $min: "$Low" }
         }},
 ]);
+
+//Q10 Can be changes to customer_support, switching "Reviews" to "instruction" and removing Name
+db.airlines_reviews.aggregate([
+    {
+        $match: { Recommended: "no" }
+    },
+    {
+        $project: {
+            Name: 1,
+            Reviews: 1,
+            Category: {
+                $switch: {
+                    branches: [
+                        { 
+                            case: { $regexMatch: { input: "$reviews", regex: /safety/i } }, 
+                            then: "Safety-related" 
+                        },
+                        { 
+                            case: { $regexMatch: { input: "$reviews", regex: /turbulence/i } }, 
+                            then: "Turbulence-related" 
+                        },
+                        { 
+                            case: { $regexMatch: { input: "$reviews", regex: /injury/i } }, 
+                            then: "Injury-related" 
+                        }
+                    ],
+                    default: "Others"
+                }
+            }
+        }
+    }
+]);
