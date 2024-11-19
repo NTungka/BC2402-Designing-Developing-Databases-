@@ -1,5 +1,4 @@
 // Q8
-
 db.airlineReviews.aggregate([
     {
         $match: {
@@ -36,4 +35,35 @@ db.airlineReviews.aggregate([
             AvgValueForMoney: {$avg: "$ValueForMoney"},
         }
     }
+])
+
+// Text mining analysis
+db.airlineReviews.aggregate([
+  {
+    $match: {
+      Verified: "TRUE",
+      Recommended: "no"
+    }
+  },
+  {
+    $group: {
+      _id: "$Airline",
+      allReviews: {
+        $push: "$Reviews"
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      Airline: "$_id",
+      ConcatenatedReviews: {
+        $reduce: {
+          input: "$allReviews",
+          initialValue: "",
+          in: { $concat: ["$$value", " ", "$$this"] }
+        }
+      }
+    }
+  }
 ])
