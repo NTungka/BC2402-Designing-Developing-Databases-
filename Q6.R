@@ -10,7 +10,6 @@ lm.meal <- lm(avg_meals_flight_ratio~avg_stay_flight_ratio, dt.q6)
 summary(lm.meal)
 
 dt.q6 %>%
-  filter(avg_baggage_flight_ratio != 0) %>%
   ggplot(aes(x=avg_stay_flight_ratio, y=avg_baggage_flight_ratio)) +
   geom_point() +
   geom_abline(slope = 0.007019, intercept = 0.073887) +
