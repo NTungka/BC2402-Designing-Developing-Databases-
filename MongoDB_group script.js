@@ -28,7 +28,8 @@ db.customer_support.aggregate([
     }
     ])
 
-//Q2     
+//Q2    
+
 db.customer_support.aggregate([
     {
         $match: { flags: { $exists: true, $ne: null } }
@@ -47,6 +48,8 @@ db.customer_support.aggregate([
 ]);
 
 //Q3
+
+
 db.flight_delay.aggregate([
     { $match: { Cancelled: 1 } },
     { $group: { _id: "$Airline", CancelledCount: { $sum: 1 } } },
@@ -125,7 +128,62 @@ db.sia_stock.aggregate([
         }},
 ]);
 
-//Q10 Can be changes to customer_support, switching "Reviews" to "instruction" and removing Name
+//Q6
+
+db.customer_booking.aggregate([
+  {
+    $group: {
+      _id: { sales_channel: "$sales_channel", route: "$route" },
+      avg_stay_flight_ratio: { $divide:[$avg:{"$length_of_stay"}, $avg:{"$flight_duration"}] } },
+      avg_baggage_flight_ratio: { $divide:[$avg:{"$wants_extra_baggage"}, $avg:{"$flight_duration"}] } },
+      avg_seat_flight_ratio: { $divide:[$avg:{"$wants_preferred_seat"}, $avg:{"$flight_duration"}] } },
+      avg_meals_flight_ratio: { $divide:[$avg:{"$wants_in_flight_meals"}, $avg: {"$flight_duration"}] } }
+    }
+  }
+]);
+
+//Q7 
+db.airlines_reviews.aggregate([
+    {
+        $addFields: {
+            Period: {
+                $cond: [
+                    { 
+                        $and: [
+                            { $gte: [{ $month: { $dateFromString: { dateString: "$ReviewDate", format: "%d/%m/%Y" } } }, 6] },
+                            { $lte: [{ $month: { $dateFromString: { dateString: "$ReviewDate", format: "%d/%m/%Y" } } }, 9] }]},
+                    "Seasonal",
+                    "Non-Seasonal" ]}}},
+    {
+        $group: {
+            _id: { Airline: "$Airline", Class: "$Class", Period: "$Period" },
+            Avg_SeatComfort: { $avg: "$SeatComfort" },
+            Avg_FoodnBeverages: { $avg: "$FoodnBeverages" },
+            Avg_InflightEntertainment: { $avg: "$InflightEntertainment" },
+            Avg_ValueForMoney: { $avg: "$ValueForMoney" },
+            Avg_OverallRating: { $avg: "$OverallRating" }}},
+    {
+        $project: {
+            _id: 0,
+            Airline: "$_id.Airline",
+            Class: "$_id.Class",
+            Period: "$_id.Period",
+            Avg_SeatComfort: 1,
+            Avg_FoodnBeverages: 1,
+            Avg_InflightEntertainment: 1,
+            Avg_ValueForMoney: 1,
+            Avg_OverallRating: 1
+        }},
+    {
+        $sort: { Airline: 1, Class: 1, Period: 1 }}
+]);
+
+//Q8
+
+//Q9
+
+
+//Q10 Can be changed to customer_support, switching "Reviews" to "instruction" and removing Name
 db.airlines_reviews.aggregate([
     {
         $match: { Recommended: "no" }
