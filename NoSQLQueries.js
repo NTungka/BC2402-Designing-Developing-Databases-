@@ -75,3 +75,38 @@ db.flightDelay.aggregate([
     { $unwind: "$Routes" },
     { $match: { $expr: { $eq: ["$Routes.DelayCount", "$MaxDelayCount"] } } }
 ])
+
+// Q5
+db.siaStock.aggregate([
+    { 
+        $addFields: { 
+            Year: { $year: { $dateFromString: { dateString: "$StockDate", format: "%m/%d/%Y" } } },
+            Month: { $month: { $dateFromString: { dateString: "$StockDate", format: "%m/%d/%Y" } } },
+        }
+    },
+    {
+        $match: {
+            Year : 2023
+        }
+    },
+    {
+    $addFields: {
+        Quarter: {$switch: {
+          branches: [
+            { case: { $lte: ["$month", 3] }, then: 1 },
+            { case: { $and: [{$lte: ["$month", 6]}, {$gt: ["$month", 3]}] }, then: 2 },
+            { case: { $and: [{$lte: ["$month", 9]}, {$gt: ["$month", 6]}] }, then: 3 }
+          ],
+          default: 4
+        }}
+        }
+    },
+    {
+        $group: {
+            _id: {Quarter: "$Quarter"},
+            AvgHigh: {$avg: "$High"},
+            AvgLow: {$avg: "$Low"},
+            AvgPrice: {$avg: "$Price"}
+        }
+    }
+])
