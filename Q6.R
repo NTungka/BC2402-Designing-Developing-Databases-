@@ -1,3 +1,6 @@
+install.packages("pacman")
+pacman::p_load(tidyverse, data.table)
+
 dt.q6 <- fread("Q6.csv", stringsAsFactors = TRUE)
 
 lm.baggage <- lm(avg_baggage_flight_ratio~avg_stay_flight_ratio, dt.q6)
