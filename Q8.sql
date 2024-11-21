@@ -13,3 +13,13 @@ SELECT Airline, COUNT(Reviews) as NumOfReviews
 FROM airlines_reviews
 WHERE Verified = 'TRUE' and Recommended = 'no'
 GROUP BY Airline;
+
+SELECT TypeofTraveller, GROUP_CONCAT(Reviews SEPARATOR ' ') as Reviews
+FROM airlines_reviews
+WHERE Verified = 'TRUE' and Recommended = 'no'
+GROUP BY TypeofTraveller;
+
+SELECT TypeofTraveller, COUNT(Reviews) as NumOfReviews
+FROM airlines_reviews
+WHERE Verified = 'TRUE' and Recommended = 'no'
+GROUP BY TypeofTraveller;

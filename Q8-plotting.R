@@ -1,22 +1,3 @@
-pacman::p_load(tidyverse, data.table, tidytext, textstem, stringr)
-
-dt.reviews <- fread("Q8.csv")
-
-dt.reviews <- dt.reviews %>% add_row(Airline = "Both", Reviews = paste(dt.reviews %>% filter(Airline == "Qatar Airways") %>% select(Reviews), dt.reviews %>% filter(Airline == "Singapore Airlines") %>% select(Reviews), sep= " ") )
-
-str_count(dt.reviews %>% filter(Airline == "Qatar Airways") %>% select(Reviews), '\\w+')
-str_count(dt.reviews %>% filter(Airline == "Singapore Airlines") %>% select(Reviews), '\\w+')
-str_count(dt.reviews %>% filter(Airline == "Both") %>% select(Reviews), '\\w+')
-
-# dt.reviews %>%
-#   filter(Airline == "Qatar Airways") %>%
-#   unnest_tokens(word, Reviews) %>%
-#   anti_join(stop_words) %>%
-#   count(Airline, word, sort = TRUE) %>%
-#   bind_tf_idf(Airline, word, n)
-
-bigram <- c("word1", "word2")
-
 dt.reviews %>%
   filter(Airline == "Qatar Airways") %>%
   unnest_tokens(word, Reviews, token = "ngrams", n = 2) %>%
@@ -33,7 +14,17 @@ dt.reviews %>%
   count(Airline, word, sort = TRUE) %>%
   bind_tf_idf(word, Airline, n) %>%
   arrange(desc(tf_idf)) %>%
-  head(n = 20)
+  head(n = 20) %>%
+  ggplot(aes(x=reorder(word, n), y=n)) +
+  geom_bar(stat="identity", fill="darkgreen") +
+  geom_text(aes(label=n), color="white", hjust = 1.25) +
+  coord_flip() +
+  theme_minimal(base_family = "serif") +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 14),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12)) +
+  labs(x="Phrase", y="Frequency")
 
 dt.reviews %>%
   filter(Airline == "Singapore Airlines") %>%
@@ -51,7 +42,17 @@ dt.reviews %>%
   count(Airline, word, sort = TRUE) %>%
   bind_tf_idf(word, Airline, n) %>%
   arrange(desc(tf_idf)) %>%
-  head(n = 20)
+  head(n = 20) %>%
+  ggplot(aes(x=reorder(word, n), y=n)) +
+  geom_bar(stat="identity", fill="darkgreen") +
+  geom_text(aes(label=n), color="white", hjust = 1.25) +
+  coord_flip() +
+  theme_minimal(base_family = "serif") +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 14),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12)) +
+  labs(x="Phrase", y="Frequency")
 
 dt.reviews %>%
   filter(Airline == "Both") %>%
@@ -69,4 +70,14 @@ dt.reviews %>%
   count(Airline, word, sort = TRUE) %>%
   bind_tf_idf(word, Airline, n) %>%
   arrange(desc(tf_idf)) %>%
-  head(n = 20)
+  head(n = 20) %>%
+  ggplot(aes(x=reorder(word, n), y=n)) +
+  geom_bar(stat="identity", fill="darkgreen") +
+  geom_text(aes(label=n), color="white", hjust = 1.25) +
+  coord_flip() +
+  theme_minimal(base_family = "serif") +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 14),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12)) +
+  labs(x="Phrase", y="Frequency")

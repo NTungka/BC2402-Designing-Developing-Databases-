@@ -22,3 +22,5 @@ df_category %>%
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12)) +
   labs(x="Category", y="Frequency")
+
+# ggsave("category_freqPlot.png", dpi=400)
