@@ -16,9 +16,23 @@ We will focus on the unique insights from the airline-comparison portion of quer
 | Food & Beverages    | "Beverage", "Food", "Snacks","Lunch","Dinner","Breakfast"  | 
 |Staff Service| "Care", "Polite", "Professional", "Friendly", etc.|
 
-24.2%
 ### Key Insights
 We will place a focus on insights surrounding Singapore airlines. The findings we found the most interesting are listed in a table below
+
+| Insight | Supporting Statistics |
+|----------|----------|
+| SIA observed the greatest loss to competitors such as Qatar in terms of **Value for Money**, with dissatisfaction in pricing being a primary issue cited by customers. This was excacerbated during seasonal-periods.| SIA 3.48, Qatar 3.72|
+| SIA observed the highest percentage of food-complaints when providing snacks, followed by Lunch Service| A complaint frequency of 24.2% & 23.9% for all food related feedback|
+| There are seasonal variations for SIA's ratings versus Qatar's greater consistency| 3.61 ▶️ 3.33 (SIA Food & Beverage from Non-seasonal to Seasonal) |
+
+## Chatbot Development
+Ourt team picked up a few unique strategies when coming up with the design principle of the chatbot. The finalized Entity-Relationship Diagram is shown below:
+
+![image](https://github.com/user-attachments/assets/ce9a20c7-4350-4c48-86dd-cfd4c12c526c)
+
+### Data Cleaning
+
+
 
 
 
